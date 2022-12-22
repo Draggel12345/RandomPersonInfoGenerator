@@ -84,23 +84,23 @@ namespace RandomPersonInfoGenerator.Data.Services
         {
             int year = rnd.Next(DateTime.Today.Year - 100, DateTime.Today.Year + 1);
             int month = rnd.Next(1, 13);
-            int day = 0;
+            int day;
 
             if (month == 4 || month == 6 || month == 9 || month == 11)
             {
-                day += rnd.Next(1, 31);
+                day = rnd.Next(1, 31); //Months with 30 days
             }
             else if (DateTime.IsLeapYear(year) && month == 2)
             {
-                day += rnd.Next(1, 30);
+                day = rnd.Next(1, 30); //February is leap year, 29 days
             }
             else if (month == 2)
             {
-                day += rnd.Next(1, 29);
+                day = rnd.Next(1, 29); //February is not leap year, 28 days
             }
             else
             {
-                day += rnd.Next(1, 32);
+                day = rnd.Next(1, 32); //Months with 31 days
             }
 
             return new DateTime(year, month, day);
