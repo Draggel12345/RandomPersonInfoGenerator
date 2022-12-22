@@ -18,10 +18,10 @@ namespace RandomPersonInfoGenerator.Data.Data_access
             string path = null;
             //Moved the RandomPersonInfo..\Data\(Name files) to a new folder(FilesForReading).
             string folderName = "FilesForReading"; //New location..\source\FilesForReading\(Name files)
-            string backTracking = "..\\..\\..\\..\\.."; // <=> repos\RandomMockUpTest\bin\Debug\net6.0
+            string backTracking = @"..\..\..\..\.."; // <=> repos\RandomMockUpTest\bin\Debug\net6.0
             try
             {
-                string runningDir = AppContext.BaseDirectory;
+                string runningDir = AppDomain.CurrentDomain.BaseDirectory;
                 string sourceDir = Path.Combine(runningDir, backTracking);
                 string filesDir = Path.Combine(sourceDir, folderName);
                 string file = Path.Combine(sourceDir, folderName, fileName);
