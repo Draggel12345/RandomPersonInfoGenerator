@@ -50,10 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\firstname_females.txt" />
-    <Content Include="Data\firstname_males.txt" />
-    <Content Include="Data\last_names.txt" />
+    <Content Include="NameFiles\firstname_females.txt" />
+    <Content Include="NameFiles\firstname_males.txt" />
+    <Content Include="NameFiles\last_names.txt" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

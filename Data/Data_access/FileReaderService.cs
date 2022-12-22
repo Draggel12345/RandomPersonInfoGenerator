@@ -15,23 +15,40 @@ namespace RandomPersonInfoGenerator.Data.Data_access
 
         private string GetFilePath(string fileName)
         {
-            string folderName = "RandomPersonInfoGenerator";
-            string runningDir = AppContext.BaseDirectory;
-            string vsStudioProjDir = Path.Combine(runningDir, "..", "..", "..");
+            string path = null;
+            //Moved the RandomPersonInfo..\Data\(Name files) to a new folder(FilesForReading).
+            string folderName = "FilesForReading"; //New location..\source\FilesForReading\(Name files)
+            string backTracking = "..\\..\\..\\..\\.."; // <=> repos\RandomMockUpTest\bin\Debug\net6.0
+            try
+            {
+                string runningDir = AppContext.BaseDirectory;
+                string sourceDir = Path.Combine(runningDir, backTracking);
+                string filesDir = Path.Combine(sourceDir, folderName);
+                string file = Path.Combine(sourceDir, folderName, fileName);
 
-            //Repos name is diffrent to projects name.
-            //Checks to see if the folder exist.
-            string file = Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
-            if (!File.Exists(file))
-            {
-                //If false(null), change the name too the repo-folders name. 
-                folderName = "RandomPersonGenerator";
-                return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+                if (!Directory.Exists(filesDir))
+                {
+                    throw new DirectoryNotFoundException();
+                }
+                else if (!File.Exists(file))
+                {
+                    throw new FileNotFoundException();
+                }
+
+                path = file;
             }
-            else
+            //Using custom made exception exstenstion method for lovely display of error message.
+            //2 catches => 1:Directory not found. 2:File not found.
+            catch (FileNotFoundException ex)
             {
-                return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+                Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
             }
+            catch (DirectoryNotFoundException ex)
+            {
+                Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
+            }
+
+            return path;
         }
 
         public List<string> GetMaleFirstNames()
@@ -51,11 +68,7 @@ namespace RandomPersonInfoGenerator.Data.Data_access
 
             }
             //Using custom made exception exstenstion method for lovely display of error message.
-            //3 catches => 1:File not found. 2:IO problems. 3:Other problems.  
-            catch (FileNotFoundException ex)
-            {
-                Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
-            }
+            //2 catches => 1:IO problems. 2:Other problems.
             catch (IOException ex)
             {
                 Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
@@ -85,11 +98,7 @@ namespace RandomPersonInfoGenerator.Data.Data_access
 
             }
             //Using custom made exception exstenstion method for lovely display of error message.
-            //3 catches => 1:File not found. 2:IO problems. 3:Other problems.  
-            catch (FileNotFoundException ex)
-            {
-                Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
-            }
+            //2 catches => 1:IO problems. 2:Other problems.
             catch (IOException ex)
             {
                 Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
@@ -120,11 +129,7 @@ namespace RandomPersonInfoGenerator.Data.Data_access
 
             }
             //Using custom made exception exstenstion method for lovely display of error message.
-            //3 catches => 1:File not found. 2:IO problems. 3:Other problems.  
-            catch (FileNotFoundException ex)
-            {
-                Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
-            }
+            //2 catches => 1:IO problems. 2:Other problems.
             catch (IOException ex)
             {
                 Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));

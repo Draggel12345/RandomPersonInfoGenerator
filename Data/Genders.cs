@@ -8,7 +8,7 @@ namespace RandomPersonInfoGenerator.Data
 {
     public enum Genders
     {
-        MALE,
-        FEMALE
+        Male,
+        Female
     }
 }

@@ -7,7 +7,7 @@ namespace RandomPersonInfoGenerator.Data.Services
         string GetRandomMaleFirstName();
         string GetRandomFemaleFirstName();
         string GetRandomLastName();
-        DateTime GetRandomAge();
+        DateTime GetRandomDateOfBirth();
         string GetRandomGender();
     }
 }

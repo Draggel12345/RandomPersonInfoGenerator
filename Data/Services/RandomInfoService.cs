@@ -9,42 +9,6 @@ namespace RandomPersonInfoGenerator.Data.Services
         private readonly FileReaderService fileReader = new FileReaderService();
         private readonly static Random rnd = new Random();
 
-        ////Returns a new random Person(Male) or Person(Female).
-        //public Person CreateRandomPerson()
-        //{
-        //    string gender = GetRandomGender();
-        //    Person person = null;
-
-        //    //The switch use the random gender-value to set the correct name and gender.ToLower() to the Person-object. 
-        //    switch (gender)
-        //    {
-        //        case "MALE":
-        //            {
-        //                person = new Person
-        //                {
-        //                    FirstName = GetRandomMaleFirstName(),
-        //                    LastName = GetRandomLastName(),
-        //                    Age = GetRandomAge(),
-        //                    Gender = gender.ToLower()
-        //                };
-        //                break;
-        //            }
-        //        case "FEMALE":
-        //            {
-        //                person = new Person
-        //                {
-        //                    FirstName = GetRandomFemaleFirstName(),
-        //                    LastName = GetRandomLastName(),
-        //                    Age = GetRandomAge(),
-        //                    Gender = gender.ToLower()
-        //                };
-        //                break;
-        //            }
-        //    }
-
-        //    return person;
-        //}
-
         //GetRandomMaleFirst/FemaleFirst/LastName...
         //1.Reads the data from the fileReaders-method and stores it in a placeholder variable.
         //2.Then from the placeholder returns ONE random name.  
@@ -78,11 +42,17 @@ namespace RandomPersonInfoGenerator.Data.Services
             return lastNames[rnd.Next(0, lastNames.Count)];
         }
 
+        private int GetOlderOrYoungerRandom()
+        {
+            return rnd.Next(100) > 50 ? 100 : 50;
+        }
+
         //Returns a random birthdate.
         //The year value is between Today(2022 - 100) = 1922 and Today(2022 + 1), max age is 100. 
-        public DateTime GetRandomAge()
+        public DateTime GetRandomDateOfBirth()
         {
-            int year = rnd.Next(DateTime.Today.Year - 100, DateTime.Today.Year + 1);
+            int olderOrYounger = GetOlderOrYoungerRandom();
+            int year = rnd.Next(DateTime.Today.Year - olderOrYounger, DateTime.Today.Year + 1);
             int month = rnd.Next(1, 13);
             int day;
 
@@ -111,7 +81,7 @@ namespace RandomPersonInfoGenerator.Data.Services
         //3.Returns the (Enum)Genders-value, that's convertet to a string. 
         public string GetRandomGender()
         {
-            return rnd.Next(100) > 50 ? Genders.FEMALE.ToString() : Genders.MALE.ToString();
+            return rnd.Next(100) > 50 ? Genders.Female.ToString() : Genders.Male.ToString();
         }
     }
 }
