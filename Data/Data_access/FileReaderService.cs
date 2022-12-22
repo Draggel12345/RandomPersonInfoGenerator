@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Xml.Linq;
 
 namespace RandomPersonInfoGenerator.Data.Data_access
 {
@@ -17,9 +15,21 @@ namespace RandomPersonInfoGenerator.Data.Data_access
 
         private string GetFilePath(string fileName)
         {
-            var runningDir = AppContext.BaseDirectory;
-            var vsStudioProjDir = Path.Combine(runningDir, "..", "..", "..", "..");
-            return Path.Combine(vsStudioProjDir, "RandomPersonInfoGenerator", "Data", fileName);
+            string folderName = "RandomPersonInfoGenerator";
+            string runningDir = AppContext.BaseDirectory;
+            string vsStudioProjDir = Path.Combine(runningDir, "..", "..", "..", "..");
+
+            //Repos name is diffrent to projects name.
+            //Checks to see if the folder exist.
+            string file = Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+            if (!File.Exists(file))
+            {
+                //If false(null), change the name too the repo-folders name. 
+                folderName = "RandomPersonGenerator";
+                return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+            }
+
+            return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
         }
 
         public List<string> GetMaleFirstNames()
@@ -53,7 +63,6 @@ namespace RandomPersonInfoGenerator.Data.Data_access
                 Debug.WriteLine(ExceptionExstensions.GetExceptionFootprints(ex));
             }
 
-            //Returns either the list or null, null checking will be done in service.
             return results;
         }
 

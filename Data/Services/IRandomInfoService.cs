@@ -1,7 +1,13 @@
-﻿namespace RandomPersonInfoGenerator.Data.Services
+﻿using System;
+
+namespace RandomPersonInfoGenerator.Data.Services
 {
     public interface IRandomInfoService
     {
-        Person CreateRandomPerson();
+        string GetRandomMaleFirstName();
+        string GetRandomFemaleFirstName();
+        string GetRandomLastName();
+        DateTime GetRandomAge();
+        string GetRandomGender();
     }
 }
