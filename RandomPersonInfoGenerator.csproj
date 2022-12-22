@@ -54,5 +54,6 @@
     <Content Include="Data\firstname_males.txt" />
     <Content Include="Data\last_names.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

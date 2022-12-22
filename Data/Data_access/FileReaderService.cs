@@ -17,7 +17,7 @@ namespace RandomPersonInfoGenerator.Data.Data_access
         {
             string folderName = "RandomPersonInfoGenerator";
             string runningDir = AppContext.BaseDirectory;
-            string vsStudioProjDir = Path.Combine(runningDir, "..", "..", "..", "..");
+            string vsStudioProjDir = Path.Combine(runningDir, "..", "..", "..");
 
             //Repos name is diffrent to projects name.
             //Checks to see if the folder exist.
@@ -28,8 +28,10 @@ namespace RandomPersonInfoGenerator.Data.Data_access
                 folderName = "RandomPersonGenerator";
                 return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
             }
-
-            return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+            else
+            {
+                return Path.Combine(vsStudioProjDir, folderName, "Data", fileName);
+            }
         }
 
         public List<string> GetMaleFirstNames()
