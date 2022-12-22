@@ -42,6 +42,7 @@ namespace RandomPersonInfoGenerator.Data.Services
             return lastNames[rnd.Next(0, lastNames.Count)];
         }
 
+        //To mix up the ages even more
         private int GetOlderOrYoungerRandom()
         {
             return rnd.Next(100) > 50 ? 100 : 50;
